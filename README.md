@@ -6,12 +6,12 @@ Run example:
 
 If you have a server with 4 GPUs, then run with a yaml config file.
 
-`python gjm/gjm.py --ngpu 4 -i local-jobs/test.yaml --logdir ./log`
+`python gjm/gjm.py --ngpu 4 -i gjm/test.yaml --logdir ./log`
 
 The first job in queue will run when a running job is just finished.
 
 ```
-11/19/2019 13:11:54 - INFO - __main__ -   code_dir is set as local-jobs/
+11/19/2019 13:11:54 - INFO - __main__ -   code_dir is set as gjm/
 11/19/2019 13:11:54 - INFO - __main__ -   Current dir is set as .
 11/19/2019 13:11:54 - INFO - __main__ -   Parsing Jobs...
 11/19/2019 13:11:54 - INFO - __main__ -   {'exp_name': 'exp_name', 'useless': '1', 'cnt': '3', 'host': 'baidu.com'}
