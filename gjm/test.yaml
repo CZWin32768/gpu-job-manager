@@ -1,0 +1,27 @@
+code:
+  local_dir: $CONFIG_DIR/
+
+search:
+  job_template:
+  # name must be unique across the jobs
+    name: test-{useless}-{exp_name}-c{cnt}-host{host}
+    sku: G1
+    command:
+    # - pip install git+https://github.com/Maluuba/nlg-eval.git@master --user
+    - ping -c {cnt} {host}
+
+  type: grid
+  max_trials: 100
+  params:
+    - name: exp_name
+      spec: discrete
+      values: ["exp_name"]
+    - name: useless
+      spec: discrete
+      values: ["1", "2", "3"]
+    - name: cnt
+      spec: discrete
+      values: ['3','5','7','9','11','13']
+    - name: host
+      spec: discrete
+      values: ["baidu.com", "localhost", "google.com"]
