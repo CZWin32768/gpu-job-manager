@@ -74,6 +74,7 @@ def main(args):
   job_iter = job_generator(job)
   threads = [None] * args.ngpu
   has_job = True
+  job_cnt = 1
   while has_job:
     for i, thread in enumerate(threads):
       if thread is None or not thread.is_alive():
@@ -82,7 +83,9 @@ def main(args):
         except StopIteration:
           has_job = False
           break
-        logger.info("Start running job: %s on %d-th GPU" % (next_job_name, i))
+        logger.info(
+          "Start running %d-th job: %s on %d-th GPU" % (job_cnt, next_job_name, i))
+        job_cnt += 1
         logger.info("Command: %s" % next_job_command)
         log_path = os.path.join(args.logdir, next_job_name)
         thread = threading.Thread(
@@ -93,6 +96,8 @@ def main(args):
 
   for thread in threads:
     if thread != None: thread.join()
+  
+  logger.info("=========  All Job finished.  =========")
 
 
 if __name__ == "__main__":
